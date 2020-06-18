@@ -17,3 +17,11 @@ use Illuminate\Support\Facades\Route;
 Route::middleware('auth:api')->get('/user', function (Request $request) {
     return $request->user();
 });
+
+Route::post('/_create_assets', 'AssetController@createAssets')->name('create.assets');
+Route::post('/_fetch_assets', 'AssetController@fetchAssets')->name('fetch.assets');
+Route::post('/_search_assets', 'AssetController@searchAssets')->name('search.assets');
+
+Route::post('/_create_media', 'MediaController@createmedia')->name('create.media');
+Route::post('/_fetch_media', 'MediaController@fetchmedia')->name('fetch.media');
+
