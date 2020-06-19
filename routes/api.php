@@ -24,4 +24,5 @@ Route::post('/_search_assets', 'AssetController@searchAssets')->name('search.ass
 
 Route::post('/_create_media', 'MediaController@createmedia')->name('create.media');
 Route::post('/_fetch_media', 'MediaController@fetchmedia')->name('fetch.media');
+Route::post('/_search_media', 'MediaController@searchmedia')->name('search.media');
 

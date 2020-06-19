@@ -217,15 +217,39 @@ class AssetController extends Controller
         if($request->submit){
             $authtoken = $request->authtoken;
             $tags = $request->tags;
-
+            $response['assets'] = array();
             $searchResults = DB::table('assets')
                                 ->where('authtoken','=',$authtoken)
-                                ->orWhere('tags','LIKE',$tags)
+                                ->where('tags','LIKE',$tags)
                                 ->orWhere('type','LIKE',$tags)
                                 ->orWhere('name','LIKE',$tags)
                                 ->orderBy('id','desc')->get();
             
-            
+            if ($searchResults->count()>0){
+                foreach ($searchResults as $searchResult) {
+                    array_push($response['assets'],array(
+                        'id' => $searchResult->id,
+                        'authtoken' => $searchResult->authtoken,
+                        'Assetstype' => $searchResult->type,
+                        'objthumbnail' => $searchResult->objthumbnail,
+                        'obj' => $searchResult->obj,
+                        'mtl' => $searchResult->mtl,
+                        'gltf' => $searchResult->gltf,
+                        'fbx' => $searchResult->fbx,
+                        'Projectimage' => $searchResult->image,
+                        'Projectname' => $searchResult->name,
+                        'tags' => $searchResult->tags
+                    ));
+                    
+                }
+                
+            }else{
+                echo json_encode(("No Assets Available!"),JSON_PRETTY_PRINT);
+            }
+        }else {
+            $response['message'] = 'Invalid Request.';
+            $response['msg_code'] = 0;
         }
+        return response($response)->header('Content-Type', 'application/json');
     }
 }
