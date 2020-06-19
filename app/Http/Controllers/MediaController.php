@@ -16,9 +16,9 @@ class MediaController extends Controller
 
         if ($request->create) {
             $authtoken = $request->authtoken;
-            $type = $request->type;
-            $name = $request->name;
-            $tags = $request->tags;
+            $type = $request->type ? $request->type : '';
+            $name = $request->name ? $request->name : '';
+            $tags = $request->tags ? $request->tags : '';
 
             if ($request->hasFile('audio')){
                 $validExtensions = ['mp3','wav','ogg'];
@@ -112,21 +112,72 @@ class MediaController extends Controller
             $response['message']='Invalid Request.';
             $response['msg_code']=0;
         }
-        return json_encode($response);
+        return response()->json($response);
     }
 
     public function fetchMedia(Request $request) {
         if ($request->submit){
             $authtoken = $request->authtoken;
+            $response['media']=array();
 
-            $media = DB::table('media')->where('authtoken','=',$authtoken)->orderBy('id','desc')->get();
-
-            $response['media']=$media;
+            $results = DB::table('media')->where('authtoken','=',$authtoken)->orderBy('id','desc')->get();
+            foreach($results as $media){
+                array_push($response['media'], array(
+                    'id' => $media->id,
+                    'autoken' => $media->authtoken,
+                    'type' => $media->type,
+                    'video' => $media->video,
+                    'thumbnail' => $media->thumbnail,
+                    'audio' => $media->audio,
+                    'extension' => $media->extension,
+                    'name' => $media->name,
+                    'tags' => $media->tags
+                ));
+            }
         }
         else {
             $response['message']='Invalid Request.';
             $response['msg_code']=0;
         }
-        return json_encode($response);
+        return response($response)->header('Content-type','application/json');
+    }
+
+    public function searchMedia(Request $request){
+        if($request->submit){
+            $authtoken = $request->authtoken;
+            $tags = $request->tags;
+            $response['media'] = array();
+            $searchResults = DB::table('media')
+                                ->where('authtoken','=',$authtoken)
+                                ->where('tags','LIKE',$tags)
+                                ->orWhere('type','LIKE',$tags)
+                                ->orWhere('name','LIKE',$tags)
+                                ->orderBy('id','desc')->get();
+            
+            if ($searchResults->count()>0){
+                foreach ($searchResults as $searchResult) {
+                    array_push($response['media'],array(
+                        'id' => $searchResult->id,
+                        'authtoken' => $searchResult->authtoken,
+                        'type' => $searchResult->type,
+                        'thumbnail' => $searchResult->thumbnail,
+                        'audio' => $searchResult->audio,
+                        'video' => $searchResult->video,
+                        'extension' => $searchResult->extension,
+                        'name' => $searchResult->name,
+                        'tags' => $searchResult->tags
+                    ));
+                    
+                }
+                
+            }else{
+                echo json_encode(("No Media Available!"),JSON_PRETTY_PRINT);
+            }
+        }else {
+            $response['message'] = 'Invalid Request.';
+            $response['msg_code'] = 0;
+        }
+        return response($response)->header('Content-Type', 'application/json');
+
     }
 }
