@@ -51,6 +51,8 @@ class AssetController extends Controller
                     move_uploaded_file($_FILES['obj']['tmp_name'], public_path('uploads/obj/') . $fbxName);
                     $fbxURL = $domain . 'uploads/obj/' . $fbxName;
                     $objURL = '';
+                } else {
+                    return ['errormessage' => 'Invalid File.'];
                 }
             } else {
                 $fbxURL = '';
@@ -167,7 +169,7 @@ class AssetController extends Controller
                 $response['message'] = 'Assets not Added to Database.';
                 $response['msg_code'] = 0;
             } else {
-                // $data = DB::table('assets')->find($id);
+                // $data = AssetModel::find($id);
                 $response['message'] = 'Assets Added to Database.';
                 $response['msg_code'] = 1;
                 $response['data'] = $asset;
@@ -187,7 +189,7 @@ class AssetController extends Controller
             $authtoken = $request->authtoken;
             $response['assets'] = array();
 
-            $results = DB::table('assets')->where('authtoken', '=', $authtoken)->orderBy('id', 'desc')->get();
+            $results = AssetModel::where('authtoken', '=', $authtoken)->orderBy('id', 'desc')->get();
             foreach ($results as $asset) {
 
                 array_push($response["assets"], array(
@@ -209,25 +211,25 @@ class AssetController extends Controller
             $response['msg_code'] = 0;
         }
         // echo json_encode(($response),JSON_PRETTY_PRINT);
-        return response($response)->header('Content-Type', 'application/json');
+        return response()->json($response);
         // echo json_encode($response, JSON_UNESCAPED_SLASHES);
     }
 
-    public function searchAssets(Request $request){
-        if($request->submit){
+    public function searchAssets(Request $request)
+    {
+        if ($request->submit) {
             $authtoken = $request->authtoken;
             $tags = $request->tags;
             $response['assets'] = array();
-            $searchResults = DB::table('assets')
-                                ->where('authtoken','=',$authtoken)
-                                ->where('tags','LIKE',$tags)
-                                ->orWhere('type','LIKE',$tags)
-                                ->orWhere('name','LIKE',$tags)
-                                ->orderBy('id','desc')->get();
-            
-            if ($searchResults->count()>0){
+            $searchResults = AssetModel::where('authtoken', '=', $authtoken)
+                ->where('tags', 'LIKE', $tags)
+                ->orWhere('type', 'LIKE', $tags)
+                ->orWhere('name', 'LIKE', $tags)
+                ->orderBy('id', 'desc')->get();
+
+            if ($searchResults->count() > 0) {
                 foreach ($searchResults as $searchResult) {
-                    array_push($response['assets'],array(
+                    array_push($response['assets'], array(
                         'id' => $searchResult->id,
                         'authtoken' => $searchResult->authtoken,
                         'Assetstype' => $searchResult->type,
@@ -240,16 +242,192 @@ class AssetController extends Controller
                         'Projectname' => $searchResult->name,
                         'tags' => $searchResult->tags
                     ));
-                    
                 }
-                
-            }else{
-                echo json_encode(("No Assets Available!"),JSON_PRETTY_PRINT);
+            } else {
+                echo json_encode(("No Assets Available!"), JSON_PRETTY_PRINT);
             }
-        }else {
+        } else {
             $response['message'] = 'Invalid Request.';
             $response['msg_code'] = 0;
         }
-        return response($response)->header('Content-Type', 'application/json');
+        return response()->json($response);
+    }
+
+    public function deleteAssets(Request $request)
+    {
+        if ($request->authtoken) {
+            if ($request->product_id) {
+                $id = $request->product_id;
+                $success = AssetModel::where('id', '=', $id)->delete();
+                if ($success) {
+                    $response['message'] = 'Assets Deleted Successfully!';
+                    $response['msg_code'] = 0;
+                } else {
+                    $response['message'] = "Something went Wrong! Error";
+                    $response['msg_code'] = 0;
+                }
+            } else {
+                $response['message'] = "Invalid Request. ID not set.";
+                $response['msg_code'] = 0;
+            }
+        } else {
+            $response['message'] = "Invalid Request. Authtoken not set.";
+            $response['msg_code'] = 0;
+        }
+        return response()->json($response);
+    }
+
+    public function updateAssets(Request $request)
+    {
+        $domain = 'http://127.0.0.1:8000/';
+
+        if ($request->update) {
+            if ($request->authtoken) {
+                if ($request->project_id) {
+                    $id = $request->project_id;
+                    $currentAssets = AssetModel::where('id', '=', $id)->get();
+                    if ($currentAssets) {
+                        foreach ($currentAssets as $currentAsset) {
+                            $authtoken = $currentAsset->authtoken;
+                            $name = $request->name ? $request->name : $currentAsset->name;
+                            $type = $request->type ? $request->type : $currentAsset->type;
+                            $tags = $request->tags ? $request->tags : $currentAsset->tags;
+
+                            if ($authtoken == $request->authtoken) {
+                                if ($request->hasFile('obj')) {
+                                    $extension = explode('.', $_FILES['obj']['name'])[1];
+                                    if ($extension == 'obj') {
+                                        $objName = time() . '.' . $extension;
+                                        move_uploaded_file($_FILES['obj']['tmp_name'], public_path('uploads/obj/') . $objName);
+                                        $objURL = $domain . 'uploads/obj/' . $objName;
+                                        $fbxURL = $currentAsset['fbx'];
+                                    } elseif ($extension == 'fbx') {
+                                        $fbxName = time() . '.' . $extension;
+                                        move_uploaded_file($_FILES['obj']['tmp_name'], public_path('uploads/obj/') . $fbxName);
+                                        $fbxURL = $domain . 'uploads/obj/' . $fbxName;
+                                        $objURL = $currentAsset['obj'];
+                                    } else {
+                                        return ['errormessage' => 'Invalid File.'];
+                                    }
+                                } else {
+                                    $objURL = $currentAsset->obj;
+                                    $fbxURL = $currentAsset->fbx;
+                                }
+                                if ($request->hasFile('gltf')) {
+                                    $extension = explode('.', $_FILES['gltf']['name'])[1];
+                                    if ($extension == 'gltf') {
+                                        $gltfName = time() . '.' . $extension;
+                                        move_uploaded_file($_FILES['gltf']['tmp_name'], public_path('uploads/gltf/') . $gltfName);
+                                        $gltfURL = $domain . 'uploads/gltf/' . $gltfName;
+                                    } else {
+                                        return ['errormessage' => 'Invalid File.'];
+                                    }
+                                } else {
+                                    $gltfURL = $currentAsset->gltf;
+                                }
+                                if ($request->hasFile('mtl')) {
+                                    $extension = explode('.', $_FILES['mtl']['name'])[1];
+                                    if ($extension == 'mtl') {
+                                        $mtlName = time() . '.' . $extension;
+                                        move_uploaded_file($_FILES['mtl']['tmp_name'], public_path('uploads/mtl/') . $mtlName);
+                                        $mtlURL = $domain . 'uploads/mtl/' . $mtlName;
+                                    } else {
+                                        return ['errormessage' => 'Invalid File.'];
+                                    }
+                                } else {
+                                    $mtlURL = $currentAsset->mtl;
+                                }
+                                if ($request->hasFile('image')) {
+                                    $validExtensions = ['png', 'jpg', 'jpeg'];
+                                    $extension = explode('.', $_FILES['image']['name'])[1];
+                                    if (in_array($extension, $validExtensions)) {
+                                        if ($_FILES['image']['size'] < (10240 * 10240)) {
+                                            $imageName = time() . '.' . $extension;
+                                            move_uploaded_file($_FILES['image']['tmp_name'], public_path('uploads/img/') . $imageName);
+                                            $imageURL = $domain . 'uploads/img/' . $imageName;
+                                        } else {
+                                            return ['errormessage' => 'File size limit exceeded. Image is too large.'];
+                                        }
+                                    } else {
+                                        return ['errormessage' => 'Invalid File.'];
+                                    }
+                                } else {
+                                    $imageURL = $currentAsset->image;
+                                }
+                                if ($request->hasFile('thumbnail')) {
+                                    $validExtensions = ['png', 'jpg', 'jpeg'];
+                                    $extension = explode('.', $_FILES['thumbnail']['name'])[1];
+                                    if (in_array($extension, $validExtensions)) {
+                                        if ($_FILES['thumbnail']['size'] < (10240 * 10240)) {
+                                            $thumbnailName = time() . '.' . $extension;
+                                            move_uploaded_file($_FILES['thumbnail']['tmp_name'], public_path('uploads/img/') . $thumbnailName);
+                                            $thumbnailURL = $domain . 'uploads/img/' . $thumbnailName;
+                                        } else {
+                                            return ['errormessage' => 'File size limit exceeded. Thumbnail is too large.'];
+                                        }
+                                    } else {
+                                        return ['errormessage' => 'Invalid File.'];
+                                    }
+                                } else {
+                                    $thumbnailURL = $currentAsset->objthumbnail;
+                                }
+                                $success = AssetModel::where('id', $id)->update([
+                                    'type' => $type,
+                                    'tags' => $tags,
+                                    'name' => $name,
+                                    'obj' => $objURL,
+                                    'mtl' => $mtlURL,
+                                    'fbx' => $fbxURL,
+                                    'gltf' => $gltfURL,
+                                    'image' => $imageURL,
+                                    'objthumbnail' => $thumbnailURL,
+                                ]);
+                                if ($success) {
+                                    $updatedAssets = AssetModel::where('id', '=', $id)->get();
+                                    $response['message'] = 'Assets updated successfully!';
+                                    $response['msg_code'] = 1;
+                                    $response['data'] = array();
+                                    foreach ($updatedAssets as $updatedAsset) {
+                                        array_push($response['data'], [
+                                            'id' => $updatedAsset->id,
+                                            'authtoken' => $updatedAsset->authtoken,
+                                            'name' => $updatedAsset->name,
+                                            'type' => $updatedAsset->type,
+                                            'obj' => $updatedAsset->obj,
+                                            'objthumbnail' => $updatedAsset->objthumbnail,
+                                            'mtl' => $updatedAsset->mtl,
+                                            'fbx' => $updatedAsset->fbx,
+                                            'gltf' => $updatedAsset->gltf,
+                                            'image' => $updatedAsset->image,
+                                            'tags' => $updatedAsset->tags,
+                                            'updated_at' => $updatedAsset->updated_at,
+                                        ]);
+                                    }
+                                } else {
+                                    $response['message'] = "Some Error occured while updating values.";
+                                    $response['msg_code'] = 0;
+                                }
+                            } else {
+                                $response['message'] = "Invalid Request. Authtoken not identified.";
+                                $response['msg_code'] = 0;
+                            }
+                        }
+                    } else {
+                        $response['message'] = "Invalid Request. ID not present.";
+                        $response['msg_code'] = 0;
+                    }
+                } else {
+                    $response['message'] = "Invalid Request. ID not set.";
+                    $response['msg_code'] = 0;
+                }
+            } else {
+                $response['message'] = "Invalid Request. Authtoken not set.";
+                $response['msg_code'] = 0;
+            }
+        } else {
+            $response['message'] = "Invalid Request.";
+            $response['msg_code'] = 0;
+        }
+        return response()->json($response);
     }
 }
