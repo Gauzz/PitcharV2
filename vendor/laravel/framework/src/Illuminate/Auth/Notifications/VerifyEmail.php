@@ -44,6 +44,7 @@ class VerifyEmail extends Notification
         }
 
         return (new MailMessage)
+            ->greeting('Hello '.$notifiable->name.'!')
             ->subject(Lang::get('Verify Email Address'))
             ->line(Lang::get('Please click the button below to verify your email address.'))
             ->action(Lang::get('Verify Email Address'), $verificationUrl)
