@@ -8,6 +8,7 @@ class AssetModel extends Model
 {
     public $table='assets';
     protected $fillable = [
+        'id',
         'authtoken',
         'type',
         'objthumbnail',
