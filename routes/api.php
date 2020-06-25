@@ -35,3 +35,7 @@ Route::post('/_fetch_marker', 'MarkerController@fetchMarker')->name('fetch.marke
 Route::post('/_fetch_markers', 'MarkerController@fetchMarkers')->name('fetch.markers');
 
 Route::post('/_post_pattern', 'MarkerController@postPattern')->name('post.pattern');
+
+Route::post('/_fetch_experience', 'MarkerController@fetchExperience')->name('fetch.experience');
+Route::post('/_post_experience', 'MarkerController@postExperience')->name('post.experience');
+Route::post('/_eidt_post_experience', 'MarkerController@editPostExperience')->name('edit.post.experience');
