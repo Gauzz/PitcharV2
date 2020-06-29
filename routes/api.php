@@ -18,6 +18,7 @@ Route::middleware('auth:api')->get('/user', function (Request $request) {
     return $request->user();
 });
 
+
 Route::post('/_create_assets', 'AssetController@createAssets')->name('create.assets');
 Route::post('/_fetch_assets', 'AssetController@fetchAssets')->name('fetch.assets');
 Route::post('/_search_assets', 'AssetController@searchAssets')->name('search.assets');
@@ -36,6 +37,6 @@ Route::post('/_fetch_markers', 'MarkerController@fetchMarkers')->name('fetch.mar
 
 Route::post('/_post_pattern', 'MarkerController@postPattern')->name('post.pattern');
 
-Route::post('/_fetch_experience', 'MarkerController@fetchExperience')->name('fetch.experience');
-Route::post('/_post_experience', 'MarkerController@postExperience')->name('post.experience');
-Route::post('/_eidt_post_experience', 'MarkerController@editPostExperience')->name('edit.post.experience');
+Route::post('/_fetch_experience', 'ExperienceController@fetchExperience')->name('fetch.experience');
+Route::post('/_post_experience', 'ExperienceController@postExperience')->name('post.experience');
+Route::post('/_eidt_post_experience', 'ExperienceController@editPostExperience')->name('edit.post.experience');

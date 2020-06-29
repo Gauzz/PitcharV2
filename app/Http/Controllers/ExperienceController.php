@@ -53,14 +53,14 @@ class ExperienceController extends Controller
                 $response['message'] = 'Experience Added successfully';
                 $response['msg_code'] = 1;
                 $response['Data'] = array();
-                $results = ExperienceModel::where('authtoken', $authtoken)->get();
+                $results = ExperienceModel::where('authtoken', $authtoken)->orderBy('id','desc')->get();
                 foreach ($results as $result) {
                     array_push($response['Data'], [
                         'id' => $result->id,
                         'authtoken' => $result->authtoken,
-                        'experience' => $result->$experience,
-                        'share_experience' => $result->$experienceURL,
-                        'thumbnail' => $result->$thumbnailURL,
+                        'experience' => $result->experience,
+                        'share_experience' => $result->share_experience,
+                        'thumbnail' => $result->thumbnail,
                         'name' => $result->name,
                         'description' => $result->description
                     ]);

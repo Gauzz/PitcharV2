@@ -6,7 +6,7 @@ use Illuminate\Database\Eloquent\Model;
 
 class ExperienceModel extends Model
 {
-    public $table='assets';
+    public $table='experiences';
     protected $fillable = [
         'id',
         'authtoken',
