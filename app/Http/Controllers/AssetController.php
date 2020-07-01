@@ -39,23 +39,29 @@ class AssetController extends Controller
                 $imageURL = '';
             }
 
+            if ($request->hasFile('fbx')) {
+                $extension = strtolower(explode('.', $_FILES['fbx']['name'])[1]);
+                if ($extension == 'fbx') {
+                    $fbxName = time() . '.' . $extension;
+                    move_uploaded_file($_FILES['fbx']['tmp_name'], public_path('uploads/fbx/') . $fbxName);
+                    $fbxURL = $domain . 'uploads/fbx/' . $fbxName;
+                } else {
+                    return ['errormessage' => 'Invalid File.'];
+                }
+            } else {
+                $fbxURL = '';
+            }
+
             if ($request->hasFile('obj')) {
                 $extension = explode('.', $_FILES['obj']['name'])[1];
                 if ($extension == 'obj') {
                     $objName = time() . '.' . $extension;
                     move_uploaded_file($_FILES['obj']['tmp_name'], public_path('uploads/obj/') . $objName);
                     $objURL = $domain . 'uploads/obj/' . $objName;
-                    $fbxURL = '';
-                } elseif ($extension == 'fbx') {
-                    $fbxName = time() . '.' . $extension;
-                    move_uploaded_file($_FILES['obj']['tmp_name'], public_path('uploads/obj/') . $fbxName);
-                    $fbxURL = $domain . 'uploads/obj/' . $fbxName;
-                    $objURL = '';
                 } else {
                     return ['errormessage' => 'Invalid File.'];
                 }
             } else {
-                $fbxURL = '';
                 $objURL = '';
             }
 

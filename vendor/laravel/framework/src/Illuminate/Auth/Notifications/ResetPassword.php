@@ -73,6 +73,7 @@ class ResetPassword extends Notification
         }
 
         return (new MailMessage)
+            ->greeting('Hello ',$notifiable->name.'!')
             ->subject(Lang::get('Reset Password Notification'))
             ->line(Lang::get('You are receiving this email because we received a password reset request for your account.'))
             ->action(Lang::get('Reset Password'), $url)
