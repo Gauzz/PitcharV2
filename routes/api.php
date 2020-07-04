@@ -18,7 +18,6 @@ Route::middleware('auth:api')->get('/user', function (Request $request) {
     return $request->user();
 });
 
-
 Route::post('/_create_assets', 'AssetController@createAssets')->name('create.assets');
 Route::post('/_fetch_assets', 'AssetController@fetchAssets')->name('fetch.assets');
 Route::post('/_search_assets', 'AssetController@searchAssets')->name('search.assets');
