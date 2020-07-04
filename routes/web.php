@@ -12,9 +12,9 @@ use Illuminate\Support\Facades\Auth;
 | contains the "web" middleware group. Now create something great!
 |
 */
-// Route::get('/', function () {
-//     return view('welcome');
-// });
+Route::get('/uploads/{pathToFile}', function ($pathToFile) {
+    return url('uploads/'.$pathToFile);
+})->middleware('cors');
 
 Route::get('/', function () {
     return view('welcome');

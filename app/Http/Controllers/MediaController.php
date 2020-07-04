@@ -29,7 +29,7 @@ class MediaController extends Controller
                         $audioName = time() . '.' . $extension;
                         move_uploaded_file($_FILES['audio']['tmp_name'], public_path('uploads/audio/') . $audioName);
                         $audioURL = $domain . 'uploads/audio/' . $audioName;
-                        $audioExtension = $extension;
+                        $mediaExtension = $extension;
                     } else {
                         return ['errormessage' => 'File size limit exceeded. Image is too large.'];
                     }
@@ -38,7 +38,6 @@ class MediaController extends Controller
                 }
             } else {
                 $audioURL = '';
-                $audioExtension = '';
             }
 
             if ($request->hasFile('video')) {
@@ -49,6 +48,7 @@ class MediaController extends Controller
                         $videoName = time() . '.' . $extension;
                         move_uploaded_file($_FILES['video']['tmp_name'], public_path('uploads/video/') . $videoName);
                         $videoURL = $domain . 'uploads/video/' . $videoName;
+                        $mediaExtension=$extension;
                     } else {
                         return ['errormessage' => 'File size limit exceeded. Image is too large.'];
                     }
@@ -85,7 +85,7 @@ class MediaController extends Controller
                 'audio' => $audioURL,
                 'video' => $videoURL,
                 'thumbnail' => $thumbnailURL,
-                'extension' => $audioExtension
+                'extension' => $mediaExtension
             ];
 
             $media = MediaModel::create($data);
