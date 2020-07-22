@@ -54,5 +54,7 @@
 
 		<script src="{{ URL::asset('assets/js/jquery-3.3.1.min.js') }}"></script>
 		<script src="{{ URL::asset('assets/js/main.js') }}"></script>
+		<link rel='stylesheet' type='text/css' href='assets/css/profile.css' />
+
 
 @endsection

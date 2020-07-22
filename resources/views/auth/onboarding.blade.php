@@ -1,4 +1,4 @@
-<!DOCTYPE html>
+
 @extends('layouts.app')
 
 @section('content')
@@ -39,6 +39,5 @@
 		<script src="{{ URL::asset('assets/js/jquery-3.3.1.min.js') }}"></script>
 		<script src="{{ URL::asset('assets/js/main.js') }}"></script>
 
-	</body>
-</html>
+
 @endsection
