@@ -62,17 +62,25 @@
                             <script>
                         $(".navbar").show();
                         </script>
-                            <li class="nav-item dropdown">
-                                <a id="navbarDropdown" class="nav-link dropdown-toggle" href="#" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" v-pre>
-                                    {{ Auth::user()->name }} <span class="caret"></span>
+                            <li class="nav-item dropdown" style="list-style-type:none;">
+                                <a id="navbarDropdown" class="nav-link dropdown-toggle" style="color: #2E384D;font-family: 'Rubik-Medium';font-weight: Regular;text-decoration:none;width: 107px;height: 23px;" href="#" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" v-pre>
+                                     <img src="{{ Auth::user()->profile_pic }}"  style="width: 25px;height: 25px;opacity: 1;border-radius: 50%;margin-right:10px;" >
+                                     {{ Auth::user()->name }}
+                                    <span class="caret"></span>
                                 </a>
 
-                                <div class="dropdown-menu dropdown-menu-right" aria-labelledby="navbarDropdown">
-                                    <a class="dropdown-item" href="{{ route('logout') }}"
+                                <div class="dropdown-menu dropdown-menu-right" aria-labelledby="navbarDropdown" id="dropdownList">
+                               
+                                <a class="dropdown-item" href="{{ url('/home') }}" style="color:black;list-style-type:none;text-decoration:none;">
+                                        {{ __('Dashboard') }}
+                                    </a><br><br>
+                                    
+                                    <a class="dropdown-item" href="{{ route('logout') }}" style="color:black;list-style-type:none;text-decoration:none;"
                                        onclick="event.preventDefault();
                                                      document.getElementById('logout-form').submit();">
                                         {{ __('Logout') }}
                                     </a>
+                                    
 
                                     <form id="logout-form" action="{{ route('logout') }}" method="POST" style="display: none;">
                                         @csrf

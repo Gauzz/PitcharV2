@@ -252,6 +252,18 @@ float: right}
   .wrapper {
     background: none; } }
 
-  
+  #dropdownList{
+    width: 157px;
+    height: 59px;
+text-align: left;
+padding-left: 15px;
+font-family: 'Rubik-Medium';
+font-weight: Regular;
+font-size: 18px ;
+color: #2E384D;
+text-transform: uppercase;
+opacity: 1;
+top: 50px;
+  }
 
    

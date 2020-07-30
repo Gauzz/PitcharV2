@@ -71,6 +71,10 @@
                         <a href="{{ url('/home') }}">Home</a>
                     @else
                         <a href="{{ route('login') }}">Login</a>
+                        @auth
+                        <a href="{{ url('/profile') }}">Profile</a>
+                    @else
+                        <a href="{{ route('login') }}">Login</a>
 
                         @if (Route::has('register'))
                             <a href="onboarding">Register</a>
