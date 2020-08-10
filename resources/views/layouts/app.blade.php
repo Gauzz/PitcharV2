@@ -63,7 +63,7 @@
                         $(".navbar").show();
                         </script>
                             <li class="nav-item dropdown" style="list-style-type:none;">
-                                <a id="navbarDropdown" class="nav-link dropdown-toggle" style="color: #2E384D;font-family: 'Rubik-Medium';font-weight: Regular;text-decoration:none;width: 107px;height: 23px;" href="#" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" v-pre>
+                                <a id="navbarDropdown" class="nav-link dropdown-toggle"  href="#" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" v-pre>
                                      <img src="{{ Auth::user()->profile_pic }}"  style="width: 25px;height: 25px;opacity: 1;border-radius: 50%;margin-right:10px;" >
                                      {{ Auth::user()->name }}
                                     <span class="caret"></span>

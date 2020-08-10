@@ -1,8 +1,19 @@
 #fullBody{
 background-color: white;
 }
+ #Name{
+     display: none;
+ }
 
-
+  .sidenav {
+      display: none;
+    
+  }
+  
+  #hamburger{
+      display: none;
+  }
+ 
   #accSetting{ 
 
     margin-top: 50px;
@@ -23,6 +34,7 @@ font-weight: lighter;
 line-height: 25px;
 }
 
+
 #underLine{
     border: 2px solid #2E5BFF;
     height: 0px;
@@ -31,6 +43,7 @@ line-height: 25px;
     margin-top: 10px;
     opacity: 1;
 }
+
 
 #profileForm{
     background-color: white;
@@ -48,6 +61,9 @@ line-height: 25px;
     border-radius: 50%;
     
   }
+  
+
+
   #imgSmallRounded {
     margin-top: -220px;
     margin-left: 1100px;
@@ -75,6 +91,7 @@ line-height: 25px;
     font-family: 'Rubik-Medium';
     font-size: 15px;
 }
+
 #fName{
     margin-top: 5px;
     margin-left: 60px;
@@ -92,6 +109,9 @@ line-height: 25px;
    line-height: 18px;
 
 }
+
+
+
 #fullEmail{
     margin-top: 10px;
     margin-left: 60px;
@@ -107,6 +127,8 @@ line-height: 25px;
     font-size: 15px;
 
 }
+
+
 #Email{
     margin-top: 5px;
     margin-left: 60px;
@@ -125,6 +147,8 @@ line-height: 25px;
     line-height: 18px;
 
 }
+
+
 #savBtn{
     border-radius: 5px;
 opacity: 1;
@@ -140,6 +164,7 @@ font-size: medium;
 color:white;
 
 }
+
 
 
 #restPassword{
@@ -158,6 +183,8 @@ color:white;
     font-size: 15px;
 
 }
+
+
 
 
 #link{
@@ -195,6 +222,8 @@ display: none;
     font-size: 15px;
 
 }
+
+
 #del{
     margin-top: 13px;
     margin-left: 112px;
@@ -212,8 +241,691 @@ display: none;
     font-size: 13px;
 
 }
+
+
 .navbar-nav{
     margin-top: 25px;
     font-size: 15px ;
 font-family:'Rubik-Medium';
 }
+
+@media  (max-width: 1024px) {
+   
+
+  #accSetting{ 
+
+    margin-top: 50px;
+    margin-left: 112px;
+    width: 250px;
+    height: 41px;
+    font: Light 21px/25px var(--unnamed-font-family-rubik-medium);
+    letter-spacing: var(--unnamed-character-spacing-0);
+    color: var(--unnamed-color-2e384d);
+    text-align: left;
+    font: Light 21px/25px Rubik-Medium;
+    letter-spacing: 1.50px;
+    color: #2E384D;
+    opacity: 1;
+font-size: 28px;
+font-family: 'Rubik-Medium';
+font-weight: lighter;
+}
+
+
+#underLine{
+    border: 2px solid #2E5BFF;
+    height: 0px;
+    width: 190px;
+    margin-left: 112px;
+    margin-top: 10px;
+    opacity: 1;
+}
+
+
+#profileForm{
+    background-color: white;
+    margin-top: 50px;
+}
+
+  #imgRounded{
+      
+    margin-top: -20px;
+    margin-bottom: 150px;
+    margin-left: 72px;
+    width: 190px;
+    height: 190px;
+    opacity: 1;
+    border-radius: 50%;
+    
+  }
+  
+
+
+  #imgSmallRounded {
+    margin-top: -220px;
+    margin-left: 1100px;
+    width: 25px;
+    height: 25px;
+    opacity: 1;
+    border-radius: 50%;
+  }
+  #profileImage{
+    opacity:0; 
+    margin-left: 125px;
+    margin-top: -180px;
+    
+  }
+
+#fullName{
+    margin-top: 200px;
+    margin-left: 60px;
+    width: 150px;
+    height: 40px;
+    text-align: left;
+    letter-spacing: 1.59px;
+    color: #B0BAC9;
+    text-transform: uppercase;
+    font-family: 'Rubik-Medium';
+    font-size: 21px;
+}
+
+#fName{
+    margin-top: 0px;
+    margin-left: 60px;
+    width: 550px;
+    height: 80px;
+    border: 1px solid #E0E7FF;
+    border-radius: 5px;
+    opacity: 1;
+    letter-spacing: var(--unnamed-character-spacing-0);
+    color: var(--unnamed-color-2e384d);
+    text-align: left;
+    font-family: 'Rubik-Regular';
+    font-size: 18px;
+   color:#2e384d;
+   line-height: 21px;
+
+}
+
+
+
+#fullEmail{
+    margin-top: 30px;
+    margin-left: 60px;
+    width: 150px;
+    height: 40px;
+    text-align: left;
+    letter-spacing: 1.59px;
+    color: #B0BAC9;
+    text-transform: uppercase;
+    font-family: 'Rubik-Medium';
+    font-size: 21px;
+}
+
+
+#Email{
+    margin-top: 0px;
+    margin-left: 60px;
+    width: 550px;
+    height: 80px;
+    border: 1px solid #E0E7FF;
+    border-radius: 0px;
+    opacity: 1;
+    letter-spacing: var(--unnamed-character-spacing-0);
+    color: var(--unnamed-color-2e384d);
+    color: #2E384D;
+    text-align: left;
+    letter-spacing: 0px;
+    font-family: 'Rubik-Regular';
+    font-size: 21px;
+    line-height: 18px;
+
+}
+
+
+#savBtn{
+    border-radius: 5px;
+opacity: 1;
+height: 75px;
+width: 280px;
+margin-left: 60px;
+margin-top: 10px;
+border: 1px solid #2E5BFF14;
+background: var(--unnamed-color-ffffff) 0% 0% no-repeat padding-box;
+background: #2E5BFF 0% 0% no-repeat padding-box;
+font-family: 'Rubik';
+font-size: 28px;
+color:white;
+
+}
+
+
+
+#restPassword{
+    
+    margin-top: 130px;
+    margin-left: 112px;
+    width: 298px;
+    height: 31px;
+    color: var(--unnamed-color-2e384d);
+    text-align: left;
+    letter-spacing: 1.5px;
+    color:#2E5BFF;
+    text-transform: uppercase;
+    opacity: 1;
+    font-family: 'Rubik-Medium';
+    font-size: 21px;
+
+}
+
+
+
+
+#link{
+    margin-top: 50px;
+    margin-left: 112px;
+    width: 326px;
+    height: 49px;
+    letter-spacing: var(--unnamed-character-spacing-0);
+    color: var(--unnamed-color-8798ad);
+    text-align: center;
+    letter-spacing: 0px;
+    color: #8798AD;
+    opacity: 1;
+    background: #EEF3F5 0% 0% no-repeat padding-box;
+border: none;
+font-family: 'Rubik-Regular';
+font-size: 15px;
+display: none;
+
+}
+
+
+#breakLink{
+    margin-top: 100px;
+    margin-left: 112px;
+    width: 350px;
+    height: 19px;
+    color: var(--unnamed-color-2e384d);
+    text-align: left;
+    letter-spacing: 1.5px;
+    color: #2E384D;
+    text-transform: uppercase;
+    opacity: 1;
+    font-family: 'Rubik-Medium';
+    font-size: 18px;
+
+}
+
+
+#del{
+    margin-top: 13px;
+    margin-left: 112px;
+    width: 300px;
+    height: 19px;
+    color: var(--unnamed-color-b0bac9);
+    text-align: left;
+    text-decoration: underline;
+    letter-spacing: 1.5px;
+    color: #B0BAC9;
+    text-transform: uppercase;
+    opacity: 1;
+    font-style: bold;
+    font-family: 'Rubik-Medium';
+    font-size: 15px;
+
+}
+
+
+.navbar-nav{
+    margin-top: 25px;
+    font-size: 21px ;
+font-family:'Rubik-Medium';
+}
+
+} 
+
+
+@media  (max-width: 480px)  { 
+    
+    #accSetting{ 
+  display: none;
+      font-family: 'Rubik-Medium';
+      font-weight: lighter;
+      margin-top: 45px;
+      margin-left: 100px;
+      width: 160px;
+      height: 21px;
+      text-align: center;
+      font-size: 18px;
+  }
+  
+  #underLine{
+      border: 2px solid #2E5BFF;
+      height: 0px;
+      width: 130px;
+      margin-left: 108px;
+      margin-top: 0px;
+      opacity: 1;
+      display: none;
+  
+  }
+  
+  #imgRounded{
+        
+      margin-top: -30px;
+      margin-bottom: 150px;
+      margin-left: 155px;
+      width: 105px;
+      height: 105px;
+      opacity: 1;
+      border-radius: 50%;
+      text-align: center;
+  
+    }
+  
+    
+  #fullName{
+      position: relative;
+      top: 30px;
+      margin-top: 80px;
+      margin-left: -0px;
+      height: 19px;
+      text-align: center;
+  font-size: 18px;
+  }
+  
+  #fName{
+
+      margin-top: 40px;
+      margin-left: 10px;
+      margin-right: 20px;
+      width: 400px;
+      height: 67px;
+  
+  
+  }
+  
+  
+  
+  #fullEmail{
+      margin-top: 25px;
+      margin-left: -30px;
+      height: 19px;
+      text-align: center;
+  font-size: 18px;
+  }
+  
+  
+  #Email{
+      margin-top: 10px;
+      margin-left: 10px;
+      margin-right: 20px;
+      width: 400px;
+      height: 67px;
+      
+  
+  }
+  
+  
+  #savBtn{
+      position: relative;
+      left: 0;
+  height: 55px;
+  width: 120px;
+  margin-top: 20px;
+  text-align: center;
+  font-size: 18px;
+  margin-left: 7px;
+  }
+  #restPassword{
+      
+      margin-top: -80px;
+      width: 298px;
+      height: 48px;
+      text-align: center;
+      font-size: 18px;
+      margin-left: 200px;
+  
+  }
+  
+  
+  
+  #link{
+      margin-top: 50px;
+  margin-left:40px;
+      width: 300px;
+      height: 49px;
+      text-align: center;
+  
+  
+  }
+  
+  
+  #breakLink{
+      margin-top: 50px; 
+      width: 310px;
+      height: 21px;
+      text-align: center;
+      margin-left: 70px;
+  
+  font-size: 17px;
+  }
+  
+  
+  #del{
+      margin-top: 10px;
+      width: 300px;
+      height: 19px;
+      text-align: center;
+      margin-left: 65px;
+      font-size: 15px;
+  
+      
+  
+  }
+  .navbar-nav{
+      margin-top: 25px;
+      font-size: 15px ;
+  font-family:'Rubik-Medium';
+  }
+  
+  /* 
+    .collapse{
+        display: none;
+        position: relative;
+        top: 230px;
+        right: 120px;
+    } */
+  
+    #hamburger{
+        right:0;
+        display: inline;
+        margin-right: 25px;
+        position: absolute;
+        top:25px;
+        height: 3px;
+        width: 35px;
+    }
+    .sidenav {
+      display: inline;
+  
+      position: fixed;
+      z-index: 1;
+      top: -0;
+      right: 0;
+      background-color:white;
+      overflow-x: hidden;
+      transition: 0.5s;
+      padding-top: 60px;
+  padding-left: 15px;
+  font-family: 'Rubik-Medium';
+  font-weight: Regular;
+  font-size: 18px ;
+  text-transform: uppercase;
+  opacity: 1;
+    }
+    
+    .sidenav a {
+      padding: 8px 8px 8px 32px;
+      text-decoration: none;
+      font-size: 25px;
+      color: black;
+      display: block;
+      transition: 0.3s;
+      margin-top: 30px;
+    }
+    
+    .sidenav a:hover {
+      color: #f1f1f1;
+    }
+    
+    .sidenav .closebtn {
+      overflow-x: hidden;
+      position: absolute;
+      top: 0;
+      right: 20px;
+      font-size: 36px;
+      color:black;
+    }
+    
+    .navbar-nav{
+        top: 10;
+        position: relative;
+    }
+      .sidenav {padding-top: 15px;}
+    
+      #Name{
+          font-family: 'Rubik-Medium';
+  
+          display: inline;
+          border-style:none;
+          position:relative;
+          top:170px;
+          margin-left:170px;
+          font-size:21px;
+      }
+   }
+  
+
+
+   @media  (max-width: 360px)  { 
+    
+    #accSetting{ 
+  display: none;
+      font-family: 'Rubik-Medium';
+      font-weight: lighter;
+      margin-top: 45px;
+      margin-left: 100px;
+      width: 160px;
+      height: 21px;
+      text-align: center;
+      font-size: 18px;
+  }
+  
+  #underLine{
+      border: 2px solid #2E5BFF;
+      height: 0px;
+      width: 130px;
+      margin-left: 108px;
+      margin-top: 0px;
+      opacity: 1;
+      display: none;
+  
+  }
+  
+  #imgRounded{
+        
+      margin-top: -50px;
+      margin-bottom: 150px;
+      margin-left: 122px;
+      width: 95px;
+      height: 95px;
+      opacity: 1;
+      border-radius: 50%;
+      text-align: center;
+  
+    }
+  
+    
+  #fullName{
+      margin-top: 50px;
+      margin-left: -5px;
+      height: 19px;
+      text-align: center;
+  font-size: 16px;
+  }
+  
+  #fName{
+      margin-top: 35px;
+      margin-left: 10px;
+      margin-right: 20px;
+      width: 345px;
+      height: 60px;
+  
+  
+  }
+  
+  
+  
+  #fullEmail{
+      margin-top: 15px;
+      margin-left: -30px;
+      height: 19px;
+      text-align: center;
+  font-size: 16px;
+  }
+  
+  
+  #Email{
+      margin-top: 0px;
+      margin-left: 10px;
+      margin-right: 20px;
+      width: 345px;
+      height: 60px;
+      
+  
+  }
+  
+  
+  #savBtn{
+      position: relative;
+      left: 0;
+  height: 40px;
+  width: 100px;
+  margin-top: 10px;
+  text-align: center;
+  font-size: 18px;
+  margin-left: 5px;
+  }
+  #restPassword{
+      
+      margin-top: -80px;
+      width: 298px;
+      height: 48px;
+      text-align: center;
+      font-size: 15px;
+      margin-left: 120px;
+  
+  }
+  
+  
+  
+  #link{
+      margin-top: 50px;
+  margin-left:40px;
+      width: 300px;
+      height: 49px;
+      text-align: center;
+  
+  
+  }
+  
+  
+  #breakLink{
+      margin-top: 10px; 
+      width: 290px;
+      height: 16px;
+      text-align: center;
+      margin-left: 50px;
+  
+  font-size: 15px;
+  }
+  
+  
+  #del{
+      margin-top: 10px;
+      width: 300px;
+      height: 19px;
+      text-align: center;
+      margin-left: 45px;
+      font-size: 15px;
+  
+      
+  
+  }
+  .navbar-nav{
+      margin-top: 25px;
+      font-size: 15px ;
+  font-family:'Rubik-Medium';
+  }
+  
+  /* 
+    .collapse{
+        display: none;
+        position: relative;
+        top: 230px;
+        right: 120px;
+    } */
+  
+    #hamburger{
+        display: inline;
+        margin-right: 10px;
+        position: relative;
+        width: 35;
+        height: 5;
+         left:305px;
+        top:-35px;
+        font-size:40px;
+    }
+    .sidenav {
+      display: inline;
+  
+      position: fixed;
+      z-index: 1;
+      top: -0;
+      right: 0;
+      background-color:white;
+      overflow-x: hidden;
+      transition: 0.5s;
+      padding-top: 60px;
+  padding-left: 15px;
+  font-family: 'Rubik-Medium';
+  font-weight: Regular;
+  font-size: 18px ;
+  text-transform: uppercase;
+  opacity: 1;
+    }
+    
+    .sidenav a {
+      padding: 8px 8px 8px 32px;
+      text-decoration: none;
+      font-size: 25px;
+      color: black;
+      display: block;
+      transition: 0.3s;
+      margin-top: 30px;
+    }
+    
+    .sidenav a:hover {
+      color: #f1f1f1;
+    }
+    
+    .sidenav .closebtn {
+      overflow-x: hidden;
+      position: absolute;
+      top: 0;
+      right: 20px;
+      font-size: 36px;
+      color:black;
+    }
+    
+    .navbar-nav{
+        top: 10;
+        position: relative;
+    }
+      .sidenav {padding-top: 15px;}
+    
+      #Name{
+          font-family: 'Rubik-Medium';
+  
+          display: inline;
+          border-style:none;
+          position:relative;
+          top:120px;
+          margin-left:125px;
+          font-size:21px;
+      }
+   }
+   
+  

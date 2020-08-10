@@ -3,15 +3,24 @@
 @section('styles')
 
 <link rel="stylesheet" type="text/css" href="assets/css/profile.css">
+
 @endsection
 
 
 @section('content')
 
 <div id="fullBody">
-	
+<div id="mySidenav" class="sidenav" style="width:0px;">
+  <a href="javascript:void(0)" class="closebtn"   onclick="closeNav()">&times;</a>
+  <a href="{{ url('/home') }}" style="margin-top:70px;">Dashboard</a>
+  <a href="{{ route('logout') }}">Logout</a>
+  
+</div>
+
+<p style="font-size:45px; cursor:pointer;" id="hamburger" onclick="openNav()">&#9776; </p>
 <p id="accSetting">Account Settings</p>
 <p id="underLine"></p>
+<input type="text"  id="Name" name="fname" value=" {{ Auth::user()->name }}" ><br>
 
 <form action="/profile" method="post" enctype="multipart/form-data">
 
@@ -52,8 +61,19 @@
         }
 
     </script>
-        <script>
-       </script>
+        
+        
+<script>
+function openNav() {
+  document.getElementById("mySidenav").style.width = "250px";
+}
+
+function closeNav() {
+  document.getElementById("mySidenav").style.width = "0";
+}
+</script>
+   
+       
 
 
 
